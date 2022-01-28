@@ -6,16 +6,19 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "as-bind": "^0.8.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "npm-run-all --parallel start:react watch:wasm",
+    "start:react": "npm run build:wasm && react-scripts start",
+    "watch:wasm": "chokidar \"assembly/**/*\" -c \"npm run build:wasm\"",
+    "build": "npm run build:wasm && npm run build:react",
+    "build:react": "react-scripts build",
+    "build:wasm": "asc assembly/index.ts --exportRuntime --transform as-bind -b public/wasm-helper.wasm --optimize"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +37,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "assemblyscript": "^0.19.22",
+    "chokidar": "^3.5.3",
+    "chokidar-cli": "^3.0.0",
+    "npm-run-all": "^4.1.5"
   }
 }
