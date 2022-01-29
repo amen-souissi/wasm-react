@@ -18,12 +18,15 @@
     "watch:wasm": "chokidar \"assembly/**/*\" -c \"npm run build:wasm\"",
     "build": "npm run build:wasm && npm run build:react",
     "build:react": "react-scripts build",
-    "build:wasm": "asc assembly/index.ts --exportRuntime --transform as-bind -b public/wasm-helper.wasm --optimize"
+    "build:wasm": "asc assembly/index.ts --exportRuntime --transform as-bind -b public/wasm-helper.wasm --optimize && make"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "ignorePatterns": [
+      "src/helpers/helperC.mjs"
     ]
   },
   "browserslist": {

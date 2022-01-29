@@ -23,3 +23,13 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### Prerequisites:
+
+- [Emscripten toolchain](https://emscripten.org/docs/getting_started/index.html)
+- GNU `make`
+
+#### Other
+
+brew reinstall gettext
+brew unlink gettext && brew link --force gettext

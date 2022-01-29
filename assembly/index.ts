@@ -20,3 +20,15 @@ export function helperFloatArray(): Float32Array {
 
   return array;
 }
+
+// ############################################################
+
+export function createArray(length: i32): Float32Array {
+  return new Float32Array(length);
+}
+
+export function helperInputArray(array: Float32Array): void {
+  for (let i = 0; i <= 1000000; i++) {
+    array[i] = test(i);
+  }
+}
